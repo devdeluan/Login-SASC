@@ -7,6 +7,8 @@
 
 /* HEADER */
 header {
+    z-index: 9999;
+    position: fixed;
     margin-left: 92%;
     display: flex;
     justify-content: end;
