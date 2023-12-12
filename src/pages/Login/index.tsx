@@ -7,6 +7,9 @@ import { useNavigate } from "react-router-dom"; // força uma navegaçao program
 import Logo from "./../../assets/img/Sasc.svg"
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css'; // Certifique-se de importar o CSS também
+
 
 
 
@@ -42,6 +45,16 @@ function fazerLogin (event:any) {
         // Recarrega a pagina e resgate no local storage o usuario logado
         navigate(0)
     })
+    .catch((error) => {
+      console.error('Erro ao fazer login:', error);
+
+      // Utiliza o SweetAlert2 para exibir uma mensagem de erro mais amigável
+      Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Erro ao fazer login, Verifique suas credenciais e tente novamente!",
+      });
+  });
     
 }
     return (
