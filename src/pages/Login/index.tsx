@@ -1,9 +1,13 @@
 //estilização
 import { useState } from "react";
-import "./style.css";
+import "./style.login.css";
 import api from "../../utils/api";
 import secureLocalStorage from 'react-secure-storage'
 import { useNavigate } from "react-router-dom"; // força uma navegaçao programatica
+import Logo from "./../../assets/img/Sasc.svg"
+import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 
 function Login() {
@@ -33,7 +37,7 @@ function fazerLogin (event:any) {
 
         //npm i react-secure-storage extensao para salvar no localstorage
         secureLocalStorage.setItem('user', response.data)
-        navigate('/perfil/' + response.data.user.id)
+        navigate('/Home')
         
         // Recarrega a pagina e resgate no local storage o usuario logado
         navigate(0)
@@ -44,14 +48,12 @@ function fazerLogin (event:any) {
       <div className="container">
   <div className="content first-content">
     <div className="first-column">
-      <h2 className="title title-primary">Olá, amigo!</h2>
+      <h2 className="title title-primary">Olá, bem vindo!</h2>
       <p className="description description-primary">Insira seus dados</p>
       <p className="description description-primary">
         e comece sua jornada conosco
       </p>
-      <button id="signup" className="btn btn-primary">
-        Registrar
-      </button>
+    <div><img className="header_logo" src={Logo} alt="" /></div>
     </div>
     <div className="second-column">
       <h2 className="title title-second">SASC</h2>
@@ -59,7 +61,7 @@ function fazerLogin (event:any) {
       <p className="description description-second">Preencha as informações:</p>
       <form onSubmit={ fazerLogin } className="form" method="POST">
         <label className="label-input" htmlFor="">
-          {/* <i className="far fa-envelope icon-modify" /> */}
+        <FontAwesomeIcon icon={faEnvelope} className="icons"/>
           <input type="email"
           onChange={ (event) => { setEmail(event.target.value) } } // pega o valor digitado e coloca como um valor
           placeholder="Email"
@@ -67,16 +69,16 @@ function fazerLogin (event:any) {
            />
         </label>
         <label className="label-input" htmlFor="">
-          {/* <i className="fas fa-lock icon-modify" /> */}
-          <input type="password" 
+        <FontAwesomeIcon icon={faLock} className="icons"/>
+        <input type="password" 
           onChange={ (event) => { setSenha(event.target.value) } } // pega o valor digitado e coloca como um valor                   
           placeholder="Senha" 
           required
           />
         </label>
-        <a className="password" href="#">
+        {/* <a className="password" href="#">
           esqueceu a senha?
-        </a>
+        </a> */}
         <button className="btn btn-second">Entrar</button>
       </form>
     </div>
